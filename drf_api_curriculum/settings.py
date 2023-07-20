@@ -52,6 +52,18 @@ INSTALLED_APPS = [
     'extras',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+}
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -83,7 +95,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'drf_api_curriculum.wsgi.application'
 
 
-# Database
+# Databases
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # DATABASES = {
@@ -104,6 +116,8 @@ DATABASES = {
         'PORT': os.getenv('POSTGRES_PORT'),
     }
 }
+
+# Custom User
 
 AUTH_USER_MODEL = 'users.User'
 
